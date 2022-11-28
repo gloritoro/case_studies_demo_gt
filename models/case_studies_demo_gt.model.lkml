@@ -2,7 +2,9 @@ connection: "bi-eng-internal"
 
 # include all the views
 include: "/views/**/*.view"
+#include these views from imported project
 include: "//looker_blueprint/views/02_users.view.lkml"
+include: "//looker_blueprint/views/05_distribution_centers.view.lkml"
 
 datagroup: case_studies_demo_gt_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
@@ -11,56 +13,10 @@ datagroup: case_studies_demo_gt_default_datagroup {
 
 persist_with: case_studies_demo_gt_default_datagroup
 
+#this explore is being extended from imported project and displaying additional dimensions created in extending view
 explore: users {
   from: users_refined
 }
 
-# explore: inventory_items {
-#   join: products {
-#     type: left_outer
-#     sql_on: ${inventory_items.product_id} = ${products.id} ;;
-#     relationship: many_to_one
-#   }
-
-#   join: distribution_centers {
-#     type: left_outer
-#     sql_on: ${products.distribution_center_id} = ${distribution_centers.id} ;;
-#     relationship: many_to_one
-#   }
-# }
-
-# explore: events {
-#   join: users {
-#     type: left_outer
-#     sql_on: ${events.user_id} = ${users.id} ;;
-#     relationship: many_to_one
-#   }
-# }
-
-# explore: distribution_centers {}
-
-# explore: order_items {
-#   join: users {
-#     type: left_outer
-#     sql_on: ${order_items.user_id} = ${users.id} ;;
-#     relationship: many_to_one
-#   }
-
-#   join: inventory_items {
-#     type: left_outer
-#     sql_on: ${order_items.inventory_item_id} = ${inventory_items.id} ;;
-#     relationship: many_to_one
-#   }
-
-#   join: products {
-#     type: left_outer
-#     sql_on: ${order_items.product_id} = ${products.id} ;;
-#     relationship: many_to_one
-#   }
-
-#   join: distribution_centers {
-#     type: left_outer
-#     sql_on: ${products.distribution_center_id} = ${distribution_centers.id} ;;
-#     relationship: many_to_one
-#   }
-#   }
+#this explore is being extended from imported project
+explore:  distribution_centers {}

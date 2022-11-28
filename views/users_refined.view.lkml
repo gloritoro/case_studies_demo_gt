@@ -11,7 +11,7 @@ view: users_refined {
 
   dimension: email_action {
     label: "Send Email"
-    sql: ${TABLE}.email ;;
+    sql: ${email} ;;
     tags: ["email"]
 
     link: {
